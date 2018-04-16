@@ -21,15 +21,14 @@ class Blog(db.Model):
 
 @app.route('/blog', methods=['POST', 'GET'])
 def blog_posts():
+    if request.args.get('id'):
+        blog_id = int(request.args.get('id'))
+        clicked_blog = Blog.query.get(blog_id)
+        return render_template("indiv_display.html", blog_title=clicked_blog.title, blog_body=clicked_blog.body)
     blogs = Blog.query.all()
-    if request.args.get('blog.id'):
-        blog.id = int(request.args.get('blog.id'))
-        blog_l = Blog.query.get(blog.id)
-        blitle = blog_l.title
-        blody = blog_l.body
-        return render_template("indiv_display.html", blog_title=blitle, blog_body=blody)
-    else:
-        return render_template("display.html", blogs=blogs)
+    return render_template("display.html", blogs=blogs)
+
+
 
 @app.route('/newpost', methods =['GET', 'POST'])
 
@@ -55,8 +54,9 @@ def addpost():
             new_blog = Blog(blog_title, blog_body)
             db.session.add(new_blog)
             db.session.commit()
-
-            return redirect('/blog')
+            
+            
+            return redirect("/blog")
 
 if __name__ == '__main__':
     app.run()

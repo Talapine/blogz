@@ -56,7 +56,7 @@ def addpost():
             db.session.commit()
             
             
-            return redirect("/blog")
+            return redirect('/blog?id=' + str(new_blog.id))
 
 if __name__ == '__main__':
     app.run()

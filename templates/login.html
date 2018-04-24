@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<h1><strong>Login</strong></h1>
+
+<p>If you have not set up a login, please <a href='/signup'>signup!</a></p>
+
+
+<form action="/login" method="post">
+    <table>
+        <tbody>
+            <tr>
+                <td><label for = "username">User name:</label></td>
+                <td><input type="text" value = "{{name}}" name = "username"></input></td>
+            </tr>
+            <tr>
+                <td><label for = "password">Password:</label></td>
+                <td><input type = "password" value = "" name = "password"></input></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <input type="submit" value = "Login"></input>  <input type = "reset"></input>
+</form>
+
+{% endblock %}

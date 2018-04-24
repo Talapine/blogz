@@ -15,14 +15,46 @@
             span {
                 color: red;
             }
+            .flashes{
+                color:hotpink;
+            }
         </style>    
     </head>
     <body>
         <nav>
-            <a href="/blog">Main Blog Page</a>
+            <div style='float:left'>
+            <a href="/">Home</a> |
+            <a href="/blog">Main Blog Page</a> |
             <a href="/newpost">Add a Blog Entry</a>
+            </div>
         </nav>
+
+        <div style='float:right'>
+            {% if 'username' in session %}
+                {{session['username']}} | <a href='/logout'>Logout</a>            
+            {% else %}
+            <nav></nav>
+                <a href= "/login">Login</a> |
+                <a href="/signup">Signup</a>
+            </nav>
+            {% endif %}
+        </div>
+        <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                  <li>{{message}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        
         {% block content %}
         {% endblock %}
+
+
+        <br>
+        
     </body>
 </html>

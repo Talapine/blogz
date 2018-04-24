@@ -2,8 +2,10 @@
 
 {% block content %}
 
-<h1><strong>{{blog_title}}</strong></h1>
+<h1><strong>{{title}}</strong></h1>
 
-    <div><h4>{{blog_body}}</h4></div>
+    <div><h4>{{body}}</h4></div>
+
+    <div><h5>Written by <a href="/blog?user={{blog.owner.username}}">{{name}}</a></h5></div>
 
 {% endblock %}
